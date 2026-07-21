@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<h1>YORK</h1>
+
+</body>
+</html><body style="background-color: black; color: white;"><h1 id="ip">Loading...</h1>
+
+<script>
+fetch("https://api.ipify.org?format=json")
+  .then(r => r.json())
+  .then(data => {
+    document.getElementById("ip").textContent = data.ip;
+  });
+</script><h1>Your Device Information</h1>
+
+<p><b>Browser:</b> <span id="browser"></span></p>
+<p><b>Operating System:</b> <span id="os"></span></p>
+<p><b>Language:</b> <span id="language"></span></p>
+<p><b>Screen:</b> <span id="screen"></span></p>
+<p><b>Region:</b> <span id="region">Loading...</span></p>
+
+<script>
+document.getElementById("browser").textContent = navigator.userAgent;
+document.getElementById("os").textContent = navigator.platform;
+document.getElementById("language").textContent = navigator.language;
+document.getElementById("screen").textContent =
+  screen.width + "x" + screen.height;
+
+fetch("https://ipapi.co/json/")
+  .then(r => r.json())
+  .then(data => {
+    document.getElementById("region").textContent =
+      `${data.city}, ${data.region}, ${data.country_name}`;
+  })
+  .catch(() => {
+    document.getElementById("region").textContent = "Unavailable";
+  });
+</script><p><b>City:</b> <span id="city">Loading...</span></p>
+
+<script>
+fetch("https://ipapi.co/json/")
+  .then(r => r.json())
+  .then(data => {
+    document.getElementById("city").textContent = data.city || "Unknown";
+  })
+  .catch(() => {
+    document.getElementById("city").textContent = "Unavailable";
+  });
+</script><h2>Visitor Information</h2>
+
+<ul>
+  <li>Browser: <span id="browser"></span></li>
+  <li>Language: <span id="language"></span></li>
+  <li>Screen: <span id="screen"></span></li>
+  <li>Time Zone: <span id="timezone"></span></li>
+  <li>Platform: <span id="platform"></span></li>
+</ul>
+
+<script>
+document.getElementById("timezone").textContent =
+  Intl.DateTimeFormat().resolvedOptions().timeZone;
+document.getElementByIdss
