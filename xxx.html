@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)file:///C:/Users/garci/AppData/Local/SquirrelTemp/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>xxx</title>
+
+<style>
+body {
+    background-color: #111;
+    color: white;
+    font-family: Arial;
+    text-align: center;
+}
+
+.box {
+    background: #222;
+    padding: 20px;
+    margin: 50px auto;
+    width: 300px;
+    border-radius: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>idiot</h1>
+
+
+
+<p>City: <span id="city">Unavailable</span></p>
+<p>Country: <span id="country">Unavailable</span></p>
+<p>Browser: <span id="browser">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0</span></p>
+<p>Device: <span id="device">Win32</span></p>
+<p>Language: <span id="language">en-US</span></p>
+<p>Screen: <span id="screen">1920x1080</span></p>
+<p>Time Zone: <span id="timezone">America/Chicago</span></p>
+
+<button onclick="alert(&#39;meow&#39;)">
+Click Me
+</button>
+
+</div>
+
+
+<script>
+
+// Device information
+document.getElementById("browser").textContent = navigator.userAgent;
+document.getElementById("device").textContent = navigator.platform;
+document.getElementById("language").textContent = navigator.language;
+document.getElementById("screen").textContent =
+screen.width + "x" + screen.height;
+document.getElementById("timezone").textContent =
+Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+
+// Location information
+fetch("https://ipapi.co/json/")
+.then(response => response.json())
+.then(data => {
+
+document.getElementById("city").textContent =
+data.city || "Unknown";
+
+document.getElementById("country").textContent =
+data.country_name || "Unknown";
+
+})
+.catch(() => {
+
+document.getElementById("city").textContent = "Unavailable";
+document.getElementById("country").textContent = "Unavailable";
+
+});
+
+</script>
+
+
+</body></html>
